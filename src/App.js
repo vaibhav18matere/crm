@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Homepage from "./pages/login/Homepage";
+import Dashboard from "./pages/dashboard/Dashboard";
+import NewTicket from "./pages/tickets/NewTicket";
+import TicketList from "./pages/tickets-list/TicketList";
+import TicketDetails from "./pages/tickets//TicketDetails";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import NotFound from "./components/page-not-found/NotFound";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Homepage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/add-tickets" element={<NewTicket />} />
+          <Route path="/tickets" element={<TicketList />} />
+          <Route path="/tickets/:tId" element={<TicketDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
